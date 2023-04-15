@@ -1,0 +1,35 @@
+
+
+#load building.ppm and call it 'building'
+load output/koala.ppm koala
+
+#blur
+blur koala blurKoala
+
+#save
+save output/blurKoala.ppm blurKoala
+
+#blur
+blur blurKoala blurKoalaSecondTime
+
+#save
+save output/blurKoalaSecondTime.ppm blurKoalaSecondTime
+
+
+#blur
+blur blurKoalaSecondTime blurKoalaThirdTime
+
+#save
+save output/blurKoalaThirdTime.ppm blurKoalaThirdTime
+
+#sharp
+sharpen koala sharpKoala
+
+#save
+save output/sharpKoala.ppm sharpKoala
+
+#blur
+sharpen sharpKoala sharpKoalaSecondTime
+
+#save
+save output/sharpKoalaSecondTime.ppm sharpKoalaSecondTime

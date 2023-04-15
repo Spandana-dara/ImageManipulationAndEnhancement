@@ -1,0 +1,8 @@
+#load building.ppm and call it 'building'
+load output/bclc.ppm bclcPPM
+
+#blur
+blur bclcPPM blurbclcPPM
+
+#save
+save output/blurbclcPPM.ppm blurbclcPPM

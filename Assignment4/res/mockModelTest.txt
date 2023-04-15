@@ -1,0 +1,9 @@
+load res/building.ppm building
+brighten 50 building building-brighter
+save res/building-brighter.ppm building-brighter
+vertical-flip building building-vertical
+save res/building-vertical.ppm building-vertical
+horizontal-flip building building-horizontal
+save res/building-horizontal.ppm building-horizontal
+horizontal-flip building-vertical building-vertical-horizontal
+save res/building-vertical-horizontal.ppm building-vertical-horizontal

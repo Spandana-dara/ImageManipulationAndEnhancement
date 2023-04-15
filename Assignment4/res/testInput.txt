@@ -1,0 +1,35 @@
+vertical-flip testImage testImage-vertical
+
+save res/testImage-vertical.ppm testImage-vertical
+
+horizontal-flip testImage testImage-horizontal
+
+save res/testImage-horizontal.ppm testImage-horizontal
+
+rgb-split testImage testImage-red testImage-green testImage-blue
+
+save res/testImage-red.ppm testImage-red
+
+save res/testImage-green.ppm testImage-green
+
+save res/testImage-blue.ppm testImage-blue
+
+rgb-combine testImage-combine testImage-red testImage-green testImage-blue
+
+save res/testImage-combine.ppm testImage-combine
+
+greyscale intensity-component testImage testImage-greyscale-intensity
+
+save res/testImage-greyscale-intensity.ppm testImage-greyscale-intensity
+
+greyscale red-component testImage testImage-greyscale-red
+
+save res/testImage-greyscale-red.ppm testImage-greyscale-red
+
+greyscale green-component testImage testImage-greyscale-green
+
+save res/testImage-greyscale-green.ppm testImage-greyscale-green
+
+greyscale blue-component testImage testImage-greyscale-blue
+
+save res/testImage-greyscale-blue.ppm testImage-greyscale-blue

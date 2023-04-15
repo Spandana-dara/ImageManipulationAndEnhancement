@@ -1,0 +1,257 @@
+Commands that are supported to run the jar file:
+------------------------------------------------
+
+java -jar Program.jar -file path-of-script-file
+  when invoked in this manner the program will open the script file, execute it and then stop.
+
+java -jar Program.jar -text
+  when invoked in this manner the program will open in an interactive text mode, allowing the user
+  to type the script and execute it one line at a time.
+
+java -jar Program.jar
+  when invoked in this manner the program will open the graphical user interface.
+
+====================================================================================================
+
+Executing the jar file:
+-----------------------
+
+The name of the submitted jar file is "ImageProcessingApplication.jar".
+The example image that can be used for the GUI or text based operations is "building.ppm".
+
+1) Run the jar with the provided script file:
+  java -jar ImageProcessingApplication.jar -file building.txt
+
+2) Run the jar file for text based interaction:
+  java -jar ImageProcessingApplication.jar -text
+
+3) Run the jar file to open the GUI:
+   java -jar ImageProcessingApplication.jar
+
+====================================================================================================
+
+Working of the GUI:
+-------------------
+1) The first operation that can be performed in the GUI is the Load operation. Clicking on the
+  "Load image" button open a file picker where the user can select the image file on which different
+  operations can be performed.
+2) The user can also load an image by combining RGB components of three images. This action can be
+  done by selecting the "RGB combine" button.
+3) An image can be flipped horizontally after any operation by clicking the "Horizontal-Flip" button.
+4) An image can be flipped vertically after any operation by clicking the "Vertical-Flip" button.
+5) An image can be brightened by a certain amount by clicking on the "Brighten" button. When this
+  button is clicked it prompts a dialog asking an integer value by which the image can be brightened.
+6) The GUI supports all the six grey scale operations. When a user clicks on the Greyscale button,
+  the user is prompted with an options dialog where the user can select the type of greyscale
+  conversion they need.
+7) An image can be blurred by clicking on the "Blur" button.
+8) An image can be sharpened by clicking on the "Sharpen" button.
+9) An image can be converted into a sepia version by clicking on the "Sepia" button.
+10) An image can be converted into a dithered version by clicking on the "Dither" button.
+11) An image can be split into its respective RGB components by clicking on the "RGB split" button.
+  A dialog is popped up, on clicking this button prompting the user to select where to save these
+  three image files. After selecting the three paths the operation is executed and the images are
+  saved in respective paths.
+12) An image can also be loaded into the application by using the RGB Combine. When clicked on the
+  RGB Combine button the application prompts a dialog for selecting three image files that are to be
+  combined. After selecting the three images, they are combined and this combined image is displayed
+  on the view.
+13) An image that is currently visible on the screen can be saved by clicking on the "Save" button
+  and selecting the respective place to save it.   
+
+====================================================================================================
+
+Commands that are supported by the application:
+-----------------------------------------------
+
+1) Load an image:
+    load image_path image_name(to refer in further operations)
+
+2) Save an image:
+    save image_path image_name
+
+3) Brighten the image:
+    brighten 10 image_name brightened_image_reference_name
+
+4) Convert the image to greyscale using red, blue, green, value, luma and intensity components:
+    greyscale red-component image_name greyscale_image_reference_name
+    greyscale green-component image_name greyscale_image_reference_name
+    greyscale blue-component image_name greyscale_image_reference_name
+    greyscale value-component image_name greyscale_image_reference_name
+    greyscale luma-component image_name greyscale_image_reference_name
+    greyscale intensity-component image_name greyscale_image_reference_name
+
+5) Flip an image horizontally
+    horizontal-flip image_name horizontally_flipped_image_reference_name
+
+6) Flip an image vertically
+    vertical-flip image_name vertically_flipped_image_reference_name
+
+7) Split the image into R,G and B components
+    rgb-split image_name red_component_reference green_component_reference blue_component_reference
+
+8) Combine the R, G and B components of an image:
+    rgb-combine combined_image_reference red_component_reference green_component_reference blue_component_reference
+
+9) Run a script of commands from a text file:
+    run script_file_name
+
+10) Blur an image:
+    blur image_name blurred_image_reference
+
+11) Sharpen an image:
+    sharpen image_name sharpened_image_reference
+
+12) Convert the image into a sepia tone:
+    sepia image_name sepia_image_reference
+
+13) Dither an image:
+    dither image_name dither_image_reference
+
+14) Execute a .jar file with a script of commands:
+    java -jar NameOfJARFile.jar -file scrip_file_name
+
+====================================================================================================
+
+Conditions while using the commands:
+------------------------------------
+1) The first command in the script file or in command line must be a "load" so that the application
+has an image to work with.
+2) The application follows a sequential execution of commands. So, performing an operation on a
+reference image before it is created causes it to throw an exception and stop the application.
+
+====================================================================================================
+
+Example of the commands that can be used in the application:
+------------------------------------------------------------
+
+#load building.ppm and call it 'building'
+load res/building.ppm building
+
+#brighten
+brighten 50 building building-brighter-by-50
+
+#save
+save res/building-brighter-by-50.ppm building-brighter-by-50
+
+#darken
+brighten -50 building building-darken-by-50
+
+#save
+save res/building-darken-by-50.ppm building-darken-by-50
+
+#vertical flip
+vertical-flip building building-vertical
+
+#save
+save res/building-vertical.ppm building-vertical
+
+#horizontal flip
+horizontal-flip building building-horizontal
+
+#save
+save res/building-horizontal.ppm building-horizontal
+
+#horizontal flip 'vertical flip image'
+horizontal-flip building-vertical building-vertical-horizontal
+
+#save
+save res/building-vertical-horizontal.ppm building-vertical-horizontal
+
+#vertical flip 'horizontal flip image'
+vertical-flip building-horizontal building-horizontal-vertical
+
+#save
+save res/building-horizontal-vertical.ppm building-horizontal-vertical
+
+#rgb-split
+rgb-split building building-red-component building-green-component building-blue-component
+
+#save
+save res/building-red-component.ppm building-red-component
+
+#save
+save res/building-green-component.ppm building-green-component
+
+#save
+save res/building-blue-component.ppm building-blue-component
+
+#rgb-combine
+rgb-combine building-rgb-combine building-red-component building-green-component building-blue-component
+
+#save
+save res/building-rgb-combine.ppm building-rgb-combine
+
+#greyscale value-component
+greyscale value-component building building-value-greyscale
+
+#save
+save res/building-value-greyscale.ppm building-value-greyscale
+
+#greyscale intensity component
+greyscale intensity-component building building-intensity-greyscale
+
+#save
+save res/building-intensity-greyscale.ppm building-intensity-greyscale
+
+#greyscale luma component
+greyscale luma-component building building-luma-greyscale
+
+#save
+save res/building-luma-greyscale.ppm building-luma-greyscale
+
+#greyscale red component
+greyscale red-component building building-red-greyscale
+
+#save
+save res/building-red-greyscale.ppm building-red-greyscale
+
+#greyscale green component
+greyscale green-component building building-green-greyscale
+
+#save
+save res/building-green-greyscale.ppm building-green-greyscale
+
+#greyscale blue component
+greyscale blue-component building building-blue-greyscale
+
+#save
+save res/building-blue-greyscale.ppm building-blue-greyscale
+
+#blur an image
+blur building blurred-building
+
+#save
+save res/blurred_building.png blurred-building
+
+#sharpen an image
+sharpen building sharpened-building
+
+#save
+save res/sharpened-building.png sharpened-building
+
+#sepia an image
+sepia building sepia-building
+
+#save
+save res/sepia-building.png sepia-building
+
+#dither an image
+dither building dithered-building
+
+#save
+save res/dithered-building.png dithered-building
+
+                             ---------------------------------------------
+
+We can store the above commands in a text file namely building.txt" and directly use:
+    run building.txt
+in the command line input to execute all the commands at once.
+
+                             ---------------------------------------------
+
+The application when executed as a .jar file namely "ImageProcessingApplication.jar" we can execute
+the file with the "building.txt" commands using:
+    java -jar ImageProcessingApplication.jar -file building.txt
+
+====================================================================================================

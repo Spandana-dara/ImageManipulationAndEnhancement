@@ -1,0 +1,75 @@
+load res/testImage.ppm testImage
+
+save res/testImage-save.ppm testImage
+
+brighten 50 testImage testImage-brighter
+
+save res/testImage-brighter.ppm testImage-brighter
+
+vertical-flip testImage testImage-vertical
+
+save res/testImage-vertical.ppm testImage-vertical
+
+horizontal-flip testImage testImage-horizontal
+
+save res/testImage-horizontal.ppm testImage-horizontal
+
+rgb-split testImage testImage-red testImage-green testImage-blue
+
+save res/testImage-red.ppm testImage-red
+
+save res/testImage-green.ppm testImage-green
+
+save res/testImage-blue.ppm testImage-blue
+
+rgb-combine testImage-combine testImage-red testImage-green testImage-blue
+
+save res/testImage-combine.ppm testImage-combine
+
+greyscale value-component testImage testImage-greyscale-value
+
+save res/testImage-greyscale-value.ppm testImage-greyscale-value
+
+greyscale intensity-component testImage testImage-greyscale-intensity
+
+save res/testImage-greyscale-intensity.ppm testImage-greyscale-intensity
+
+greyscale luma-component testImage testImage-greyscale-luma
+
+save res/testImage-greyscale-luma.ppm testImage-greyscale-luma
+
+greyscale red-component testImage testImage-greyscale-red
+
+save res/testImage-greyscale-red.ppm testImage-greyscale-red
+
+greyscale green-component testImage testImage-greyscale-green
+
+save res/testImage-greyscale-green.ppm testImage-greyscale-green
+
+greyscale blue-component testImage testImage-greyscale-blue
+
+save res/testImage-greyscale-blue.ppm testImage-greyscale-blue
+
+#blur
+blur testImage testImage-blur
+
+#save
+save res/testImage-blur.ppm testImage-blur
+
+#sharpen
+sharpen testImage testImage-sharpen
+
+#save
+save res/testImage-sharpen.ppm testImage-sharpen
+
+#sepia
+sepia testImage testImage-sepia
+
+#save
+save res/testImage-sepia.ppm testImage-sepia
+
+#dither
+dither testImage testImage-dither
+
+#save
+save res/testImage-dither.ppm testImage-dither
