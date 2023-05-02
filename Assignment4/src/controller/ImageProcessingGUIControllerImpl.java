@@ -2,11 +2,13 @@ package controller;
 
 import java.io.File;
 import java.io.StringReader;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import model.ImageProcessingModelNewFeature;
 import view.ImageProcessingViewFrame;
 
@@ -16,14 +18,14 @@ import view.ImageProcessingViewFrame;
  * ImageProcessingControllerImpl class.
  */
 public class ImageProcessingGUIControllerImpl extends ImageProcessingControllerImpl implements
-    ImageProcessingGUIController {
+        ImageProcessingGUIController {
 
-  private ImageProcessingViewFrame frame;
-  private String command;
-  private String fileName;
   private final String[] redFilePath;
   private final String[] greenFilePath;
   private final String[] blueFilePath;
+  private ImageProcessingViewFrame frame;
+  private String command;
+  private String fileName;
 
   /**
    * Create a controller to work with the GUI of the Image Processing application.
@@ -110,6 +112,9 @@ public class ImageProcessingGUIControllerImpl extends ImageProcessingControllerI
           int resultForCombine = helperForChoosingPaths(false);
           createCommandForRGBCombine(resultForCombine);
           break;
+        case "mosaic":
+          createMosaicCommand();
+          break;
         default:
           throw new UnsupportedOperationException();
       }
@@ -141,25 +146,25 @@ public class ImageProcessingGUIControllerImpl extends ImageProcessingControllerI
     String greyScaleComponent = "";
     JFrame greyScaleFrame = new JFrame("GreyScale Dialog Box");
     String[] options = {"red-component", "green-component", "blue-component",
-        "luma-component", "value-component", "intensity-component"};
+            "luma-component", "value-component", "intensity-component"};
     int choice = JOptionPane.showOptionDialog(greyScaleFrame, "Select an option", "Grey Scale",
-        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options,
-        options[options.length - 1]);
+            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options,
+            options[options.length - 1]);
     if (choice == JOptionPane.CLOSED_OPTION) {
       return;
     }
     greyScaleComponent = options[choice];
     command = "greyscale " + greyScaleComponent + " " + fileName + " " + fileName + "-"
-        + greyScaleComponent;
+            + greyScaleComponent;
     fileName = fileName + "-" + greyScaleComponent;
   }
 
   private void createCommandForRGBSplit(int result) {
     StringBuilder commands = new StringBuilder();
     if (result == JOptionPane.OK_OPTION && redFilePath[0] != null && greenFilePath[0] != null
-        && blueFilePath[0] != null) {
+            && blueFilePath[0] != null) {
       commands.append(
-          "rgb-split " + fileName + " loadimage-red" + " loadimage-green" + " loadimage-blue");
+              "rgb-split " + fileName + " loadimage-red" + " loadimage-green" + " loadimage-blue");
       commands.append(" save " + redFilePath[0] + " loadimage-red");
       commands.append(" save " + greenFilePath[0] + " loadimage-green");
       commands.append(" save " + blueFilePath[0] + " loadimage-blue");
@@ -172,18 +177,28 @@ public class ImageProcessingGUIControllerImpl extends ImageProcessingControllerI
   private void createCommandForRGBCombine(int result) {
     StringBuilder rgbCombineCommands = new StringBuilder();
     if (result == JOptionPane.OK_OPTION && redFilePath[0] != null && greenFilePath[0] != null
-        && blueFilePath[0] != null) {
+            && blueFilePath[0] != null) {
       rgbCombineCommands.append("load " + redFilePath[0] + " loadimage-red");
       rgbCombineCommands.append(" load " + greenFilePath[0] + " loadimage-green");
       rgbCombineCommands.append(" load " + blueFilePath[0] + " loadimage-blue ");
       rgbCombineCommands.append(
-          "rgb-combine " + "rgb-combine" + " loadimage-red" + " loadimage-green"
-              + " loadimage-blue");
+              "rgb-combine " + "rgb-combine" + " loadimage-red" + " loadimage-green"
+                      + " loadimage-blue");
       command = rgbCombineCommands.toString();
       fileName = "rgb-combine";
     } else {
       frame.displayErrorDialogBox();
     }
+  }
+
+  private void createMosaicCommand() {
+    JFrame mosaicFrame = new JFrame("Button Dialog Box");
+    String seeds = JOptionPane.showInputDialog(mosaicFrame, "Enter number of seeds:");
+    if (seeds == null || seeds.isEmpty()) {
+      return;
+    }
+    command = "mosaic " + seeds + " " + fileName + " mosaic-image";
+    fileName = "mosaic-image";
   }
 
   private int helperForChoosingPaths(boolean isFromRGBSplit) {
@@ -212,9 +227,9 @@ public class ImageProcessingGUIControllerImpl extends ImageProcessingControllerI
       }
     });
     JComponent[] buttons = new JComponent[]{redSplitSaveButton, greenSplitSaveButton,
-        blueSplitSaveButton};
+            blueSplitSaveButton};
     return JOptionPane.showConfirmDialog(null, buttons, "Select the File paths",
-        JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.PLAIN_MESSAGE);
   }
 
   private String chooseFilePathToOpen() {

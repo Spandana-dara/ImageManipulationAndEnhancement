@@ -92,6 +92,8 @@ public class ImageProcessingViewFrameImpl extends JFrame implements ImageProcess
     buttonsPanel.add(sepia);
     JButton dither = createButton("Dither", "dither");
     buttonsPanel.add(dither);
+    JButton mosaic = createButton("Mosaic", "mosaic");
+    buttonsPanel.add(mosaic);
     return buttonsPanel;
   }
 

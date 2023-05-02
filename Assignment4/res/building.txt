@@ -1,117 +1,123 @@
 #load building.ppm and call it 'building'
-load building.ppm building
+load res/building.ppm building
 
 #brighten
 brighten 50 building building-brighter-by-50
 
 #save
-save building-brighter-by-50.ppm building-brighter-by-50
+save res/building-brighter-by-50.ppm building-brighter-by-50
 
 #darken
 brighten -50 building building-darken-by-50
 
 #save
-save building-darken-by-50.ppm building-darken-by-50
+save res/building-darken-by-50.ppm building-darken-by-50
 
 #vertical flip
 vertical-flip building building-vertical
 
 #save
-save building-vertical.ppm building-vertical
+save res/building-vertical.ppm building-vertical
 
 #horizontal flip
 horizontal-flip building building-horizontal
 
 #save
-save building-horizontal.ppm building-horizontal
+save res/building-horizontal.ppm building-horizontal
 
 #horizontal flip 'vertical flip image'
 horizontal-flip building-vertical building-vertical-horizontal
 
 #save
-save building-vertical-horizontal.ppm building-vertical-horizontal
+save res/building-vertical-horizontal.ppm building-vertical-horizontal
 
 #vertical flip 'horizontal flip image'
 vertical-flip building-horizontal building-horizontal-vertical
 
 #save
-save building-horizontal-vertical.ppm building-horizontal-vertical
+save res/building-horizontal-vertical.ppm building-horizontal-vertical
 
 #rgb-split
 rgb-split building building-red-component building-green-component building-blue-component
 
 #save
-save building-red-component.ppm building-red-component
+save res/building-red-component.ppm building-red-component
 
 #save
-save building-green-component.ppm building-green-component
+save res/building-green-component.ppm building-green-component
 
 #save
-save building-blue-component.ppm building-blue-component
+save res/building-blue-component.ppm building-blue-component
 
 #rgb-combine
 rgb-combine building-rgb-combine building-red-component building-green-component building-blue-component
 
 #save
-save building-rgb-combine.ppm building-rgb-combine
+save res/building-rgb-combine.ppm building-rgb-combine
 
 #greyscale value-component
 greyscale value-component building building-value-greyscale
 
 #save
-save building-value-greyscale.ppm building-value-greyscale
+save res/building-value-greyscale.ppm building-value-greyscale
 
 #greyscale intensity component
 greyscale intensity-component building building-intensity-greyscale
 
 #save
-save building-intensity-greyscale.ppm building-intensity-greyscale
+save res/building-intensity-greyscale.ppm building-intensity-greyscale
 
 #greyscale luma component
 greyscale luma-component building building-luma-greyscale
 
 #save
-save building-luma-greyscale.ppm building-luma-greyscale
+save res/building-luma-greyscale.ppm building-luma-greyscale
 
 #greyscale red component
 greyscale red-component building building-red-greyscale
 
 #save
-save building-red-greyscale.ppm building-red-greyscale
+save res/building-red-greyscale.ppm building-red-greyscale
 
 #greyscale green component
 greyscale green-component building building-green-greyscale
 
 #save
-save building-green-greyscale.ppm building-green-greyscale
+save res/building-green-greyscale.ppm building-green-greyscale
 
 #greyscale blue component
 greyscale blue-component building building-blue-greyscale
 
 #save
-save building-blue-greyscale.ppm building-blue-greyscale
+save res/building-blue-greyscale.ppm building-blue-greyscale
 
 #blur
 blur building building-blur
 
 #save
-save building-blur.bmp building-blur
+save res/building-blur.bmp building-blur
 
 #sharpen
 sharpen building building-sharpen
 
 #save
-save building-sharpen.jpg building-sharpen
+save res/building-sharpen.jpg building-sharpen
 
 #sepia
 sepia building building-sepia
 
 #save
-save building-sepia.png building-sepia
+save res/building-sepia.png building-sepia
 
 #dither
 dither building building-dither
 
 #save
-save building-dither.ppm building-dither
+save res/building-dither.ppm building-dither
 
+#mosaic
+mosaic 1000 building building-mosaic
+
+#save 
+save res/building-mosaic.png building-mosaic
+ 

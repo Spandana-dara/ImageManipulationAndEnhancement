@@ -12,6 +12,7 @@ import controller.command.Brighten;
 import controller.command.Dither;
 import controller.command.Greyscale;
 import controller.command.HorizontalFlip;
+import controller.command.Mosaic;
 import controller.command.RGBCombine;
 import controller.command.RGBSplit;
 import controller.command.Sepia;
@@ -28,9 +29,9 @@ import view.ImageProcessingView;
 public class ImageProcessingControllerImpl implements ImageProcessingController {
 
   private final ImageProcessingModelNewFeature image;
+  protected Object commandOutput;
   private ImageProcessingView view;
   private Scanner fetchInputs = null;
-  protected Object commandOutput;
 
   /**
    * Create a controller to work with the ImageProcessingModel.
@@ -39,7 +40,7 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
    * @param view  ImageProcessingView object that is used to show the results
    */
   public ImageProcessingControllerImpl(ImageProcessingModelNewFeature model,
-      ImageProcessingView view) {
+                                       ImageProcessingView view) {
     this.image = model;
     this.view = view;
   }
@@ -67,6 +68,7 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
     knownCommands.put("sharpen", s -> new Sharpen(getInputDetails(2, fetchInputs)));
     knownCommands.put("sepia", s -> new Sepia(getInputDetails(2, fetchInputs)));
     knownCommands.put("dither", s -> new Dither(getInputDetails(2, fetchInputs)));
+    knownCommands.put("mosaic", s -> new Mosaic(getInputDetails(3, fetchInputs)));
     while (sc.hasNext()) {
       String input = sc.next();
       if (input.startsWith("#")) {
@@ -81,8 +83,9 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
   }
 
   private void forSwitch(String input,
-      Map<String, Function<Scanner, ImageProcessingCommand>> knownCommands, Scanner sc)
-      throws Exception {
+                         Map<String, Function<Scanner, ImageProcessingCommand>> knownCommands,
+                         Scanner sc)
+          throws Exception {
     switch (input) {
       case "run":
         String fileName = sc.next();
@@ -103,8 +106,8 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
   }
 
   private void executeCommand(Map<String, Function<Scanner, ImageProcessingCommand>> knownCommands,
-      String input, Scanner sc)
-      throws Exception {
+                              String input, Scanner sc)
+          throws Exception {
     ImageProcessingCommand executableCommand;
     Function<Scanner, ImageProcessingCommand> cmd = knownCommands.getOrDefault(input, null);
     if (cmd == null) {
@@ -122,7 +125,7 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
   }
 
   private void executeCommandFile(String fileName,
-      Map<String, Function<Scanner, ImageProcessingCommand>> knownCommands) throws Exception {
+                                  Map<String, Function<Scanner, ImageProcessingCommand>> knownCommands) throws Exception {
     Scanner scanner = null;
     try {
       File inputFile = new File(fileName);

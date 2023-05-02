@@ -41,4 +41,13 @@ public interface ImageProcessingModelNewFeature extends ImageProcessingModel {
    * @return an Image object containing an array representing the dithered image
    */
   Image dither(String imageName, String destImageName);
+
+  /**
+   * Mosaic an image and create a new image, referred to henceforth by the given destination name.
+   *
+   * @param imageName     reference of the image that has to be mosaicked
+   * @param destImageName name of the dithered image with which it is further referred
+   * @return an Image object containing an array representing the mosaicked image
+   */
+  Image mosaic(int numOfSeeds, String imageName, String destImageName);
 }
